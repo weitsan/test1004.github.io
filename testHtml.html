@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frog</title>
+	<input type ="button" value="reg" onclick="showReg()"></input>
+
+	<input type ="button" value="rec" onclick="rec()"></input>
+
+	<input type ="button" value="view" onclick="view()"></input>
+
+
+	<meta charset="UTF-8" meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--
+	<title>AI AUDIO</title>
+	<script src="p5.min.js"></script>
+	<script src="p5.dom.min.js"></script>
+	<script src="ml5.min.js" type="text/javascript"></script>
+	<script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
+-->
+
+</head>
+
+
+<body>
+	
+	<div id="reg" style="display:none">
+		
+		<form>地點名稱<input type="text" id="adr"></form>
+		<form>備註<input type="text" id="note"></form>
+
+		<script>
+			var lat,lon;
+			if( navigator.geolocation ) {
+				// 支援GPS地理定位
+				navigator.geolocation.getCurrentPosition( geoYes, geoNo);
+			}
+			else {
+				alert("GPS failed!");
+			}
+			function geoYes(evt){
+				str = "緯度" + evt.coords.latitude;
+				lat = evt.coords.latitude;
+				str += "<br />經度" + evt.coords.longitude;
+				lon = evt.coords.longitude;
+				document.getElementById("posStr").innerHTML=str;
+			}
+
+			function geoNo(evt){
+				alert("GPS取得失敗");
+			}
+			function showReg() {
+  				document.getElementById("reg").style.display = "block";
+			}
+			function post(){
+				myurl = "http://210.240.203.166/test1/addloc.aspx?adr=" + document.getElementById("adr").value + "&lat=" + lat + "&lon=" + lon + "&note" + document.getElementById("note").value;
+				getData();
+				alert("註冊成功");
+			}
+			function getData(){
+				var req = new XMLHttpRequest();
+				req.open("GET",myurl);
+				req.onload=function(){
+
+				};
+				req.send();
+			}
+			function rec(){
+				javascript:location.href="http://210.240.203.166/webtest1/frogmodel/index.html";
+			}
+			function view(){
+				javascript:location.href='http://210.240.203.166/test1/query_w.aspx';
+			}
+		</script>
+
+		定位資訊
+
+		<p id="posStr"></p>
+		<input type ="button" value="return" onclick="post()">
+		</input>
+
+	</div>
+
+</body>
+</html>

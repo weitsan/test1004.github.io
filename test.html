@@ -1,0 +1,37 @@
+<html >  
+<head >  
+<script type = "text/javascript" >   
+var  c = 0  
+var t  
+function timedCount()  
+{  
+document.getElementById('txt') .value = c  
+c = c +1  
+t = setTimeout ("timedCount()",1000)  
+}  
+  
+function stopCount()  
+{  
+  clearTimeout(t)
+  window.console.log("NOW:" + t);
+  t=0;
+  window.console.log("change:" + t);
+}  
+  
+</script>  
+</head>  
+  
+<body>  
+<form>  
+<input type = "button" value = "開始計時！" onClick = "timedCount()" >     
+<input type = "text" id = "txt" >    
+<input type = "button" value = "停止計時！" onClick = "stopCount()" >     
+</form >  
+  
+<p >  
+請點擊上面的“開始計時”按鈕。輸入框會從 0 開始一直進行計時。點擊“停止計時”可停止計時。  
+</p>  
+  
+</body>  
+  
+</html>  
